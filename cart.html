@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Кошик</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+          <h1 class="logo">UNN</h1>
+          <nav class="nav">
+            <a href="index.html">Головна</a>
+            <a href="quiz.html">Підбір</a>
+            <a href="products.html">Футболки</a>
+            <a href="cart.html">Кошик</a>
+          </nav>
+        </div>
+      </header>
+      
+
+  <main style="padding: 2rem">
+    <div id="cart-items"></div>
+    <p><strong>Загальна сума:</strong> <span id="total">0 грн</span></p>
+    <button onclick="checkout()">Оформити замовлення</button>
+  </main>
+
+  <script src="scripts.js"></script>
+</body>
+</html>

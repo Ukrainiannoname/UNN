@@ -1,39 +1,96 @@
-/* Стилі для quiz-form */
-.quiz-form {
-  max-width: 600px;
-  margin: 30px auto;
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+/* ——— Base ——— */
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --c-bg:#f9f9f9;
+  --c-fg:#111;
+  --c-accent:#ff5a00;
+  --c-accent-dark:#d94c00;
+  --c-text:#333;
+  --c-muted:#666
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:system-ui,Segoe UI,Helvetica,Arial,sans-serif;
+  background:var(--c-bg);
+  color:var(--c-text);
+  line-height:1.55;
 }
 
-.quiz-form label {
-  display: block;
-  margin-bottom: 10px;
-  font-weight: bold;
-}
+/* ——— Layout helpers ——— */
+.container{max-width:1280px;margin:auto;padding:0 1rem}
+.grid-3{display:grid;gap:2.5rem;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
 
-.quiz-form input {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 20px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
+/* ——— Header / Nav ——— */
+.site-header{
+  background:var(--c-fg);
+  color:#fff;
 }
-
-.quiz-form button {
-  width: 100%;
-  padding: 15px;
-  background-color: #ff6600;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 1.2em;
-  cursor: pointer;
-  transition: background-color 0.3s;
+.site-header .container{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:1rem 0;
 }
+.logo{font-size:1.6rem;font-weight:700;letter-spacing:1px}
+.nav a{
+  color:#fff;text-decoration:none;margin-left:1.5rem;font-weight:500
+}
+.nav a:hover{opacity:.75}
 
-.quiz-form button:hover {
-  background-color: #ff3300;
+
+/* ——— Hero ——— */
+.hero{
+  background:#111 url('https://via.placeholder.com/1600x600') center/cover no-repeat;
+  color:#fff;
+  text-align:center;
+  padding:6rem 1rem 7rem;
+}
+.hero-title{font-size:3rem;font-weight:700;margin-bottom:.5rem}
+.hero-subtitle{font-size:1.25rem;margin-bottom:2rem;color:#ddd;max-width:720px;margin-inline:auto}
+.btn-primary{
+  background:var(--c-accent);
+  color:#fff;
+  padding:.9rem 2.6rem;
+  border-radius:50px;
+  font-size:1rem;
+  text-decoration:none;
+  transition:.25s;
+}
+.btn-primary:hover{background:var(--c-accent-dark)}
+
+/* ——— Features ——— */
+.features{background:#fff;padding:4rem 1rem}
+.feature h3{font-size:1.2rem;margin-bottom:.6rem;color:var(--c-fg)}
+.feature p{color:var(--c-muted)}
+
+/* ——— Product grid / cards (спільно для products.html) ——— */
+.product-grid{display:grid;gap:2rem;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.product{
+  background:#fff;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,.08);
+  padding:1rem;text-align:center;transition:transform .2s;
+}
+.product:hover{transform:translateY(-4px)}
+.product img{width:100%;border-radius:8px}
+.product h2{font-size:1.1rem;margin:.9rem 0 .4rem}
+.product p{font-weight:600;margin-bottom:.9rem}
+.product button{
+  background:var(--c-fg);color:#fff;border:none;border-radius:8px;
+  padding:.55rem 1.3rem;font-size:.95rem;cursor:pointer;transition:.2s
+}
+.product button:hover{background:#444}
+
+/* ——— Quiz / form ——— */
+.quiz-form{
+  max-width:600px;margin:3rem auto;background:#fff;padding:2rem;border-radius:12px;
+  box-shadow:0 4px 12px rgba(0,0,0,.08)
+}
+.quiz-form label{display:block;font-weight:600;margin-bottom:.4rem;color:var(--c-text)}
+.quiz-form input{width:100%;padding:.75rem;margin-bottom:1.2rem;border:1px solid #ddd;border-radius:8px}
+.quiz-form button{width:100%;background:var(--c-accent);border:none;color:#fff;
+  padding:1rem;border-radius:8px;font-size:1rem;cursor:pointer;transition:.25s}
+.quiz-form button:hover{background:var(--c-accent-dark)}
+
+/* ——— Footer ——— */
+.site-footer{
+  background:var(--c-fg);color:#fff;text-align:center;padding:1.5rem 1rem;margin-top:4rem
 }

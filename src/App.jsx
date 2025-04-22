@@ -2,6 +2,13 @@ import { useState } from 'react';
 import './App.css';
 import 'foundation-sites/dist/css/foundation.min.css';
 import FitQuiz from './FitQuiz';
+import 'motion-ui/dist/motion-ui.min.css';
+import $ from 'jquery';
+import 'foundation-sites';
+
+useEffect(() => {
+  $(document).foundation();
+}, []);
 
 function App() {
   const [showQuiz, setShowQuiz] = useState(false);

@@ -1,4 +1,4 @@
-// postcss.config.js
-module.exports = {
+
+export default {
   plugins: []
-}
+};

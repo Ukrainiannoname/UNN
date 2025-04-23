@@ -1,3 +1,4 @@
+// src/context/CartContext.jsx
 import React, { createContext, useState, useEffect } from 'react';
 
 export const CartContext = createContext();
@@ -8,31 +9,45 @@ export function CartProvider({ children }) {
     return stored ? JSON.parse(stored) : [];
   });
 
+  // зберігаємо в localStorage
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cart));
   }, [cart]);
 
-  const addToCart = (item) => setCart(prev => [...prev, item]);
-  const clearCart = () => setCart([]);
-  const total = cart.reduce((sum, i) => sum + i.price, 0);
+  // додає товар (якщо є — просто інкрементує кількість)
+  function addToCart(item) {
+    setCart(prev => {
+      const exists = prev.find(i => i.id === item.id);
+      if (exists) {
+        return prev.map(i =>
+          i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i
+        );
+      } else {
+        return [...prev, { ...item, quantity: 1 }];
+      }
+    });
+  }
+
+  // оновлює кількість
+  function updateQuantity(id, quantity) {
+    setCart(prev =>
+      prev
+        .map(i => (i.id === id ? { ...i, quantity } : i))
+        .filter(i => i.quantity > 0)
+    );
+  }
+
+  function clearCart() {
+    setCart([]);
+  }
+
+  const total = cart.reduce((sum, i) => sum + i.price * i.quantity, 0);
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, clearCart, total }}>
+    <CartContext.Provider
+      value={{ cart, addToCart, updateQuantity, clearCart, total }}
+    >
       {children}
     </CartContext.Provider>
   );
-}
-
-// src/hooks/useReveal.js
-import { useEffect } from 'react';
-export default function useReveal() {
-  useEffect(() => {
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) e.target.classList.add('show');
-      });
-    }, { threshold: 0.15 });
-    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-    return () => io.disconnect();
-  }, []);
 }

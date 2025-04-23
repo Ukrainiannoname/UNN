@@ -52,3 +52,23 @@ function checkout() {
 if (document.getElementById('cart-items')) {
   updateCartUI();
 }
+
+/* =====  quick view modal  ===== */
+function openQuickView(prod){
+    // заповнюємо дані
+    document.getElementById('qImg').src   = prod.image;
+    document.getElementById('qName').textContent  = prod.name;
+    document.getElementById('qPrice').textContent = prod.price;
+    // кнопка «Додати в кошик» усередині модалі
+    const btn = document.getElementById('qAddBtn');
+    btn.onclick = ()=>{ addToCart(prod); closeQuickView(); };
+    // показуємо модальне вікно
+    document.getElementById('quickOverlay').classList.add('show');
+  }
+  // закриття модалі
+  function closeQuickView(){ document.getElementById('quickOverlay').classList.remove('show'); }
+  // закриваємо кліком по фону
+  document.getElementById('quickOverlay').addEventListener('click',e=>{
+    if(e.target.id==='quickOverlay') closeQuickView();
+  });
+  
